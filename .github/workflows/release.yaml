@@ -34,7 +34,7 @@ jobs:
 
       - name: Tag the release
         run: |
-          ls la
+          ls -la
           tree
           git tag -a v${{ env.release-version}} -m "Release db-syncer:: ${{ env.release-version}}"
           git push origin --tags
