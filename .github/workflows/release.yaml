@@ -15,7 +15,7 @@ on:
       
 env:
   GITHUB_TOKEN: ${{ secrets.MY_TOKEN }}   
-  release-version: 0.0.1
+  release-version: 0.0.2
 
 jobs:
   release:
@@ -71,6 +71,6 @@ jobs:
           push: true
           tags: quay.io/pminz/operator:${{ env.release-version }}
           secrets: |
-            GIT_AUTH_TOKEN=${{ secrets.MYTOKEN }}
+            GITAUTH_TOKEN=${{ secrets.MYTOKEN }}
           build-args: |
             DB_SYNCER_VERSION=${{ env.release-version }}
