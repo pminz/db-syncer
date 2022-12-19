@@ -70,5 +70,7 @@ jobs:
           file: src/main/docker/Dockerfile.jvm
           push: true
           tags: quay.io/pminz/operator:${{ env.release-version }}
+          secrets: |
+            GIT_AUTH_TOKEN=${{ secrets.MYTOKEN }}
           build-args: |
             DB_SYNCER_VERSION=${{ env.release-version }}
