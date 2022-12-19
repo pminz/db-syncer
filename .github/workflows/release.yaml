@@ -27,7 +27,6 @@ jobs:
         with:
           ref: ${{ github.event.inputs.ref }}
 
-
       - name: Tag the release
         run: |
           cd db-syncer
@@ -36,7 +35,7 @@ jobs:
           git tag -a v${{ env.release-version}} -m "Release db-syncer:: ${{ env.release-version}}"
           git push origin --tags
 
-       - name: Setup Java
+      - name: Setup Java
         uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
