@@ -1,12 +1,17 @@
 name: Gingersnap db-syncer - Build and publish
 
+#on:
+#  workflow_dispatch:
+#    inputs:
+#      ref:
+#        description: "The db-syncer branch/tag to checkout when creating the image."
+#        required: true
+#        default: "test_pipeline"
+
 on:
-  workflow_dispatch:
-    inputs:
-      ref:
-        description: "The db-syncer branch/tag to checkout when creating the image."
-        required: true
-        default: "test_pipeline"
+  push:
+    branches:
+      - 'test_pipline'
       
 env:
   GITHUB_TOKEN: ${{ secrets.MY_TOKEN }}   
