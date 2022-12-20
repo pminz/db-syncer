@@ -15,8 +15,7 @@ on:
       
 env:
   GITHUB_TOKEN: ${{ secrets.MY_TOKEN }}   
-  release-version: 0.0.3
-
+  
 jobs:
   release:
     runs-on: ubuntu-latest
@@ -39,6 +38,11 @@ jobs:
       #    tree
       #    git tag -a v${{ env.release-version}} -m "Release db-syncer:: ${{ env.release-version}}"
       #    git push origin --tags
+
+      - name: Checkout latest tag
+        run: | 
+          LATEST_TAG=$(git describe --tags `git rev-list --tags --max-count=1`) 
+          git checkout $LATEST_TAG
 
       - name: Setup Java
         uses: actions/setup-java@v3
@@ -70,6 +74,4 @@ jobs:
           context: .
           file: src/main/docker/Dockerfile.jvm
           push: true
-          tags: quay.io/pminz/db-syncer:${{ env.release-version }}
-          build-args: |
-            DB_SYNCER_VERSION=${{ env.release-version }}
+          tags: quay.io/pminz/db-syncer:$LATEST_TAG
