@@ -11,7 +11,7 @@ name: Gingersnap db-syncer - Build and publish
 on: 
   push:
     tags:
-      - '*'
+      - 'v*'
       
 env:
   GITHUB_TOKEN: ${{ secrets.MY_TOKEN }}   
