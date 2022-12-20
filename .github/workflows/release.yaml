@@ -40,7 +40,7 @@ jobs:
       #    git push origin --tags
 
       - name: Checkout latest tag
-        id: latesttag
+        id: vars
         run: | 
           LATEST_TAG=$(git describe --tags `git rev-list --tags --max-count=1`) 
           git checkout $LATEST_TAG
@@ -76,6 +76,6 @@ jobs:
           context: .
           file: src/main/docker/Dockerfile.jvm
           push: true
-          tags: quay.io/pminz/db-syncer:${{ steps.latesttag.outputs.LATEST_TAG }}
+          tags: quay.io/pminz/db-syncer:${{ steps.vars.outputs.LATEST_TAG }}
           build-args: |
             OPERATOR_VERSION=${{ steps.latesttag.outputs.LATEST_TAG }}
