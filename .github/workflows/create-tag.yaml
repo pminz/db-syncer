@@ -8,7 +8,7 @@ on:
 env:
   GITHUB_TOKEN: ${{ secrets.MY_TOKEN }}   
   #ssh-key: "${{ secrets.SSH_PRIVATE_KEY }}"
-  release-version: 0.0.21
+  release-version: 0.0.22
 
 jobs:
   release:
@@ -22,13 +22,11 @@ jobs:
 
       - name: Checkout
         uses: actions/checkout@v2
-        with:
-          GITHUB_TOKEN: ${{ secrets.MY_TOKEN }} 
+#        with:
+#          GITHUB_TOKEN: ${{ secrets.MY_TOKEN }} 
 
       - name: Tag the release
         run: |
-         ls -la
-         tree
          git tag -a v${{ env.release-version}} -m "Release db-syncer:: ${{ env.release-version}}"
          git push --tags
 
