@@ -15,7 +15,7 @@ on:
       
 env:
   GITHUB_TOKEN: ${{ secrets.MY_TOKEN }}   
-  
+
 jobs:
   release:
     runs-on: ubuntu-latest
@@ -40,8 +40,9 @@ jobs:
       #    git push origin --tags
 
       - name: Checkout latest tag
+        id: vars
         run: | 
-          LATEST_TAG=$(git describe --tags `git rev-list --tags --max-count=1`) 
+          LATEST_TAG=$(git describe --tags `git rev-list --tags --max-count=1`) >> $GITHUB_OUTPUT
           git checkout $LATEST_TAG
 
       - name: Setup Java
@@ -74,4 +75,4 @@ jobs:
           context: .
           file: src/main/docker/Dockerfile.jvm
           push: true
-          tags: quay.io/pminz/db-syncer:$LATEST_TAG
+          tags: quay.io/pminz/db-syncer:${{ steps.vars.outputs.LATEST_TAG }}
