@@ -8,7 +8,7 @@ on:
 env:
   GITHUB_TOKEN: ${{ secrets.MY_TOKEN }}   
   #ssh-key: "${{ secrets.SSH_PRIVATE_KEY }}"
-  release-version: 0.0.22
+  release-version: 0.0.23
 
 jobs:
   release:
