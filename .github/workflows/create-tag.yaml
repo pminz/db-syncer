@@ -7,7 +7,8 @@ on:
       
 env:
   GITHUB_TOKEN: ${{ secrets.MY_TOKEN }}   
-  release-version: 0.0.2
+  ssh-key: "${{ secrets.SSH_PRIVATE_KEY }}"
+  release-version: 0.0.6
 
 jobs:
   release:
@@ -22,7 +23,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         with:
-          ref: ${{ github.event.inputs.ref }}
+          ssh-key: "${{ secrets.SSH_PRIVATE_KEY }}"
 
       - name: Tag the release
         run: |

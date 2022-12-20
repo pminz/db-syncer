@@ -30,7 +30,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         with:
-          ref: ${{ github.event.inputs.ref }}
+          ssh-key: "${{ secrets.SSH_PRIVATE_KEY }}"
+
 
       #- name: Tag the release
       #  run: |
