@@ -1,0 +1,33 @@
+name: Gingersnap db-syncer - Build and publish
+
+on:
+  push:
+    branches:
+      - 'test_pipeline'
+      
+env:
+  GITHUB_TOKEN: ${{ secrets.MY_TOKEN }}   
+  release-version: 0.0.2
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Configure Git
+        run: |
+          git config --global user.name "pminz"
+          git config --global user.email "pminz@redhat.com"
+
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.inputs.ref }}
+
+      - name: Tag the release
+       run: |
+         ls -la
+         tree
+         git tag -a v${{ env.release-version}} -m "Release db-syncer:: ${{ env.release-version}}"
+         git push origin --tags
+
