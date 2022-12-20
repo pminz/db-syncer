@@ -44,7 +44,7 @@ jobs:
         run: | 
           LATEST_TAG=$(git describe --tags `git rev-list --tags --max-count=1`) 
           git checkout $LATEST_TAG
-          echo $LATEST_TAG >> $GITHUB_OUTPUT
+          echo LATEST_TAG=$LATEST_TAG >> $GITHUB_OUTPUT
 
       - name: Setup Java
         uses: actions/setup-java@v3
