@@ -9,14 +9,14 @@ name: Gingersnap db-syncer - Build and publish
 #        default: "test_pipeline"
 
 on:
+  on:  
   push:
-    # Pattern matched against refs/tags
-    tags:        
-      - '*'           # Push events to every tag not containing /
+    tags:
+      - '*'
       
 env:
   GITHUB_TOKEN: ${{ secrets.MY_TOKEN }}   
-  release-version: 0.0.0
+  release-version: 0.0.2
 
 jobs:
   release:
