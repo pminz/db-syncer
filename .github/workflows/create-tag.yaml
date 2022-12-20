@@ -25,7 +25,7 @@ jobs:
           ref: ${{ github.event.inputs.ref }}
 
       - name: Tag the release
-       run: |
+        run: |
          ls -la
          tree
          git tag -a v${{ env.release-version}} -m "Release db-syncer:: ${{ env.release-version}}"
