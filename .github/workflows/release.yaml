@@ -40,10 +40,11 @@ jobs:
       #    git push origin --tags
 
       - name: Checkout latest tag
-        id: vars
+        id: latesttag
         run: | 
-          LATEST_TAG=$(git describe --tags `git rev-list --tags --max-count=1`) >> $GITHUB_OUTPUT
+          LATEST_TAG=$(git describe --tags `git rev-list --tags --max-count=1`) 
           git checkout $LATEST_TAG
+          echo $LATEST_TAG >> $GITHUB_OUTPUT
 
       - name: Setup Java
         uses: actions/setup-java@v3
@@ -75,6 +76,6 @@ jobs:
           context: .
           file: src/main/docker/Dockerfile.jvm
           push: true
-          tags: quay.io/pminz/db-syncer:${{ steps.vars.outputs.LATEST_TAG }}
+          tags: quay.io/pminz/db-syncer:${{ steps.latesttag.outputs.LATEST_TAG }}
           build-args: |
-            OPERATOR_VERSION=${{ steps.vars.outputs.LATEST_TAG }}
+            OPERATOR_VERSION=${{ steps.latesttag.outputs.LATEST_TAG }}
