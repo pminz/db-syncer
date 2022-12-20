@@ -76,3 +76,5 @@ jobs:
           file: src/main/docker/Dockerfile.jvm
           push: true
           tags: quay.io/pminz/db-syncer:${{ steps.vars.outputs.LATEST_TAG }}
+          build-args: |
+            OPERATOR_VERSION=${{ steps.vars.outputs.LATEST_TAG }}
