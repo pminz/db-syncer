@@ -14,27 +14,8 @@ env:
 
 jobs:
   tag:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Configure Git
-        run: |
-          git config --global user.name "pminz"
-          git config --global user.email "pminz@redhat.com"
-
-      - name: Checkout
-        uses: actions/checkout@v3
-        with: 
-          ref: ${{ github.event.inputs.ref }} 
-          
-      - name: Tag the release
-        run: |
-         echo "tag creation was successful"
-
-      - name: Trigger another workflow
-        if : success()
-        uses: pminz/db-syncer/.github/workflows/test_another_workflow.yaml@workflow_call
-        with: 
-          ref: ${{ github.event.inputs.ref }} 
+    uses: pminz/db-syncer/.github/workflows/test_another_workflow.yaml@workflow_call
+    with: 
+      ref: ${{ github.event.inputs.ref }} 
 
          
