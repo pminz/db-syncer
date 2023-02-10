@@ -6,6 +6,9 @@ on:
       ref:
         type: string
         default: "release_pipeline"
+      repo:
+        type: string
+        default: gingersnap/db-syncer
       
 env:
   GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}  
@@ -15,6 +18,7 @@ jobs:
     uses: pminz/db-syncer/.github/workflows/test_another_workflow.yaml@workflow_call
     with: 
       ref: ${{ inputs.ref }} 
+      repo: ${{ inputs.repo }}
 
 
          
