@@ -3,7 +3,7 @@ name: db-syncer -Create Tag
 on:
   workflow_call:
     inputs:
-      db-syncer-ref:
+      ref:
         type: string
         default: "release_pipeline"
       
@@ -14,7 +14,7 @@ jobs:
   tag:
     uses: pminz/db-syncer/.github/workflows/test_another_workflow.yaml@workflow_call
     with: 
-      ref: ${{ github.event.inputs.db-syncer-ref }} 
+      ref: ${{ github.event.inputs.ref }} 
 
 
          

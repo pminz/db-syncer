@@ -3,7 +3,7 @@ name: db-syncer -Create Tag
 on:
   workflow_call:
     inputs:
-      db-syncer-ref:
+      ref:
         type: string 
         default: "release_pipeline"
       
@@ -24,7 +24,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         with: 
-          ref: ${{ github.event.inputs.db-syncer-ref }} 
+          ref: ${{ github.event.inputs.ref }} 
           
       - name: Debug
         run: |
