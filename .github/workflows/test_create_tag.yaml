@@ -4,8 +4,7 @@ on:
   workflow_call:
     inputs:
       ref:
-        description: "The branch to checkout when creating the image."
-        required: true
+        type: string
         default: "release_pipeline"
       
 env:
