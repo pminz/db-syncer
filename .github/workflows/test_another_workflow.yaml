@@ -28,6 +28,6 @@ jobs:
           
       - name: Debug
         run: |
-         echo "Workflow was triggered successfully""
+         echo "Workflow was triggered successfully"
 
       
